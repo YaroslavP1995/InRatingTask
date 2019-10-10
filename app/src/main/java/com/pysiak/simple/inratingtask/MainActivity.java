@@ -1,6 +1,8 @@
 package com.pysiak.simple.inratingtask;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -17,22 +19,58 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView recyclerLikers;
+    RecyclerView recyclerReposters;
+    RecyclerView recyclerComentators;
+    RecyclerView recyclerMentions;
 
-   private TextView textView;
-   private TextView textView1;
-   private TextView textView2;
-   private TextView textView3;
-   private TextView textView4;
-   private static final int USER_ID = 2027;
+    PostsAdapter likersAdapter;
+    PostsAdapter repostersAdapter;
+    PostsAdapter comentatorsAdapter;
+    PostsAdapter mentionsAdapter;
+
+   private TextView textViewsCount;
+   private TextView textViewLikersCount;
+   private TextView textViewComentatorsCount;
+   private TextView textViewMentionsCount;
+   private TextView textViewRepostsCount;
+   private TextView textViewBookmarksCountPost;
+   private static final int USER_ID = 2028;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textTest);
-        textView1 = findViewById(R.id.textTest1);
-        textView2 = findViewById(R.id.textTest2);
-        textView3 = findViewById(R.id.textTest3);
-        textView4 = findViewById(R.id.textTest4);
+        textViewsCount = findViewById(R.id.views_count);
+        textViewLikersCount = findViewById(R.id.likers_count);
+        textViewComentatorsCount = findViewById(R.id.comentators_count);
+        textViewMentionsCount = findViewById(R.id.mentions_count);
+        textViewRepostsCount = findViewById(R.id.reposts_count);
+        textViewBookmarksCountPost = findViewById(R.id.bookmarks_count_post);
+
+        recyclerLikers = (RecyclerView) findViewById(R.id.likers_recycle_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        recyclerLikers.setLayoutManager(layoutManager);
+        likersAdapter = new PostsAdapter();
+        recyclerLikers.setAdapter(likersAdapter);
+
+        recyclerReposters = (RecyclerView)findViewById(R.id.reposts_recycle_view);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        recyclerReposters.setLayoutManager(linearLayoutManager1);
+        repostersAdapter = new PostsAdapter();
+        recyclerReposters.setAdapter(repostersAdapter);
+
+        recyclerComentators = (RecyclerView)findViewById(R.id.comentators_recycle_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        recyclerComentators.setLayoutManager(linearLayoutManager);
+        comentatorsAdapter = new PostsAdapter();
+        recyclerComentators.setAdapter(comentatorsAdapter);
+
+        recyclerMentions = (RecyclerView)findViewById(R.id.mentions_recycle_view);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        recyclerMentions.setLayoutManager(linearLayoutManager2);
+        mentionsAdapter = new PostsAdapter();
+        recyclerMentions.setAdapter(mentionsAdapter);
 
         getLikers();
         getReposters();
@@ -46,10 +84,11 @@ public class MainActivity extends AppCompatActivity {
         App.getApi().getLikers(USER_ID).enqueue(new Callback<UsersInfo>() {
             @Override
             public void onResponse(Call<UsersInfo> call, Response<UsersInfo> response) {
-                Log.i("TEST_getLikers", "response.body = " + response.body());
+                //Log.i("TEST_getLikers", "response.body = " + response.body().getData().size());
                 Log.i("TEST_getLikers", "message = " + response.message());
                 if (response.body() != null) {
-                    textView.setText(response.body().getData().size()+"");
+                    likersAdapter.setUsers(response.body().getData());
+                    textViewLikersCount.setText(response.body().getData().size()+"");
                 }
             }
             @Override
@@ -66,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TEST_getReposters", "response.body = " + response.body().getData().size());
                 Log.i("TEST_getReposters", "message = " + response.message());
                 if (response.body() != null) {
-                    textView1.setText(response.body().getData().size()+"");
+                    repostersAdapter.setUsers(response.body().getData());
+                    textViewRepostsCount.setText(response.body().getData().size()+"");
                 }
             }
             @Override
@@ -84,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TEST_getComentators", "response.body = " + response.body());
                 Log.i("TEST_getComentators", "message = " + response.message());
                 if (response.body() != null) {
-                    textView2.setText(response.body().getData().size()+"");
+                    comentatorsAdapter.setUsers(response.body().getData());
+                    textViewComentatorsCount.setText(response.body().getData().size()+"");
                 }
             }
             @Override
@@ -101,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TEST_getMentions", "response.body = " + response.body());
                 Log.i("TEST_getMentions", "message = " + response.message());
                 if (response.body() != null) {
-                    textView3.setText(response.body().getData().size()+"");
+                    mentionsAdapter.setUsers(response.body().getData());
+                    textViewMentionsCount.setText(response.body().getData().size()+" ");
                 }
             }
             @Override
@@ -119,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TEST_getBookmarks", "message = " + response.message());
 
                 if (response.body() != null) {
-                    textView4.setText(response.body().getViewsCount()+"");
-                    //textView2.setText(response.body().getId()+" ");
+                    textViewsCount.setText(response.body().getViewsCount()+"");
+                    textViewBookmarksCountPost.setText(response.body().getBookmarksCount()+" ");
                 }
             }
             @Override

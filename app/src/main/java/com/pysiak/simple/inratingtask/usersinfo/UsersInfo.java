@@ -9,7 +9,7 @@ public class UsersInfo {
 
     @SerializedName("data")
     @Expose
-    private List<Users> data = null;
+    private List<Users> data ;
 
     public List<Users> getData() {
         return data;
