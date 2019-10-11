@@ -27,18 +27,8 @@ public class PostsInfo {
     @SerializedName("author")
     @Expose
     private Author author;
-    @SerializedName("attachments")
-    @Expose
-    private Attachments attachments;
-    @SerializedName("site_link")
     @Expose
     private String siteLink;
-    /*@SerializedName("intags")
-    @Expose
-    private List<Object> intags = null;*/
-    /*@SerializedName("place")
-    @Expose
-    private Object place;*/
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -63,9 +53,6 @@ public class PostsInfo {
     @SerializedName("likes_count")
     @Expose
     private int likesCount;
-    /*@SerializedName("extra")
-    @Expose
-    private Object extra;*/
     @SerializedName("visibility")
     @Expose
     private String visibility;
@@ -128,28 +115,12 @@ public class PostsInfo {
         this.active = active;
     }
 
-    /*public Object getContent() {
-        return content;
-    }
-
-    public void setContent(Object content) {
-        this.content = content;
-    }*/
-
     public Author getAuthor() {
         return author;
     }
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public Attachments getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(Attachments attachments) {
-        this.attachments = attachments;
     }
 
     public String getSiteLink() {
@@ -159,22 +130,6 @@ public class PostsInfo {
     public void setSiteLink(String siteLink) {
         this.siteLink = siteLink;
     }
-
-    /*public List<Object> getIntags() {
-        return intags;
-    }
-
-    public void setIntags(List<Object> intags) {
-        this.intags = intags;
-    }
-
-    public Object getPlace() {
-        return place;
-    }
-
-    public void setPlace(Object place) {
-        this.place = place;
-    }*/
 
     public String getCreatedAt() {
         return createdAt;
@@ -239,14 +194,6 @@ public class PostsInfo {
     public void setLikesCount(int likesCount) {
         this.likesCount = likesCount;
     }
-
-   /* public Object getExtra() {
-        return extra;
-    }
-
-    public void setExtra(Object extra) {
-        this.extra = extra;
-    }*/
 
     public String getVisibility() {
         return visibility;

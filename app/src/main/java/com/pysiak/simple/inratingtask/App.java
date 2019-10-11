@@ -34,8 +34,8 @@ public class App extends Application {
                 .client(okHttpClient)
                 .build().create(PostsInfoApi.class);
 
-
     }
+
     public static UsersInfoApi getApi() {
         return usersInfoApi;
     }

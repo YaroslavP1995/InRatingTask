@@ -10,12 +10,6 @@ public class Author {
     @SerializedName("nickname")
     @Expose
     private String nickname;
-   /* @SerializedName("active_gift")
-    @Expose
-    private Object activeGift;*/
-    /*@SerializedName("avatar_image")
-    @Expose
-    private AvatarImage avatarImage;*/
     @SerializedName("off_page")
     @Expose
     private boolean offPage;
@@ -43,9 +37,6 @@ public class Author {
     @SerializedName("geo_id")
     @Expose
     private GeoId geoId;
-    /*@SerializedName("contest_entry_instance")
-    @Expose
-    private Object contestEntryInstance;*/
     @SerializedName("chat_main_lang")
     @Expose
     private String chatMainLang;
@@ -68,22 +59,6 @@ public class Author {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
-    /*public Object getActiveGift() {
-        return activeGift;
-    }
-
-    public void setActiveGift(Object activeGift) {
-        this.activeGift = activeGift;
-    }
-
-    public AvatarImage getAvatarImage() {
-        return avatarImage;
-    }
-
-    public void setAvatarImage(AvatarImage avatarImage) {
-        this.avatarImage = avatarImage;
-    }*/
 
     public boolean isOffPage() {
         return offPage;
@@ -156,14 +131,6 @@ public class Author {
     public void setGeoId(GeoId geoId) {
         this.geoId = geoId;
     }
-
-    /*public Object getContestEntryInstance() {
-        return contestEntryInstance;
-    }
-
-    public void setContestEntryInstance(Object contestEntryInstance) {
-        this.contestEntryInstance = contestEntryInstance;
-    }*/
 
     public String getChatMainLang() {
         return chatMainLang;

@@ -9,8 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.pysiak.simple.inratingtask.usersinfo.Users;
 import com.pysiak.simple.inratingtask.usersinfo.UsersInfo;
 import com.pysiak.simple.inratingtask.postsinfo.PostsInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
    private TextView textViewRepostsCount;
    private TextView textViewBookmarksCountPost;
    private static final int USER_ID = 2028;
+   List<Users> usersInfo = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +56,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerLikers = (RecyclerView) findViewById(R.id.likers_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerLikers.setLayoutManager(layoutManager);
-        likersAdapter = new PostsAdapter();
+        likersAdapter = new PostsAdapter(usersInfo,this);
         recyclerLikers.setAdapter(likersAdapter);
 
         recyclerReposters = (RecyclerView)findViewById(R.id.reposts_recycle_view);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
         recyclerReposters.setLayoutManager(linearLayoutManager1);
-        repostersAdapter = new PostsAdapter();
+        repostersAdapter = new PostsAdapter(usersInfo,this);
         recyclerReposters.setAdapter(repostersAdapter);
 
         recyclerComentators = (RecyclerView)findViewById(R.id.comentators_recycle_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
         recyclerComentators.setLayoutManager(linearLayoutManager);
-        comentatorsAdapter = new PostsAdapter();
+        comentatorsAdapter = new PostsAdapter(usersInfo,this);
         recyclerComentators.setAdapter(comentatorsAdapter);
 
         recyclerMentions = (RecyclerView)findViewById(R.id.mentions_recycle_view);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
         recyclerMentions.setLayoutManager(linearLayoutManager2);
-        mentionsAdapter = new PostsAdapter();
+        mentionsAdapter = new PostsAdapter(usersInfo,this);
         recyclerMentions.setAdapter(mentionsAdapter);
 
         getLikers();
