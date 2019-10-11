@@ -16,6 +16,11 @@ import com.pysiak.simple.inratingtask.usersinfo.Users;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter for RecyclerView
+ *
+ * @author Yaroslav P.
+ */
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     private List<Users> usersInfo = new ArrayList<>();

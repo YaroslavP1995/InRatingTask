@@ -20,7 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/**
+ * Main class, launcher activity for application
+ *
+ * @author Yaroslav P.
+ */
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerLikers;
